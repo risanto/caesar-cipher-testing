@@ -16,11 +16,19 @@ describe 'caesar_cipher' do
         expect(caesar_cipher('hello', {:hi => 'hello'})).to eql('Type of `n` must be Integer')
     end
 
-    it "returns the correct outputs within range" do
+    it "returns the correct output within range" do
         expect(caesar_cipher('abcd', 1)).to eql('bcde')
     end
 
-    it "returns the correct outputs with uppercase" do
+    it "returns the correct output when there's an uppercase letter" do
         expect(caesar_cipher('What', 5)).to eql('Bmfy')
+    end
+
+    it "returns the correct output with non-letter characters" do
+        expect(caesar_cipher("What a string!", 5)).to eql("Bmfy f xywnsl!")
+    end
+
+    it "returns the correct output outside range" do
+        expect(caesar_cipher("xyz", 3)).to eql("abc")
     end
 end
